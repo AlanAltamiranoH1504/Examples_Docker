@@ -1,0 +1,17 @@
+→ CONTENEDOR DE MARIADB Y VOLUMEN DE DATOS
+docker container run -d -p 3308:3306 --name=world-db -e MARIADB_USER=example-user -e MARIADB_PASSWORD=user-password -e MARIADB_ROOT_PASSWORD=root-secret-password -e MARIADB_DATABASE=world-db -v world-db:/var/lib/mysql:Z mariadb:10.6.25-jammy
+
+→ CONTENEDOR DE PHPMYADMIN
+docker container run --name=phpmyadmin -d -e PMA_ARBITRARY=1 -p 8081:80 phpmyadmin:5.2.1-apache
+
+→ IMAGEN DE PHP MY ADMIN
+phpmyadmin:5.2.1-apache
+
+→ CREAR VOLUMEN
+docker volume create world-db
+
+→ CREAR RED 
+creare network world-app
+
+→ VINCULAR CONTENEDOR A RED
+docker network connect nombre-red nombre-contenedor

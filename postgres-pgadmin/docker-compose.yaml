@@ -1,0 +1,31 @@
+version: "3" # Siempre se inicia con la version del archivo de docker compose
+
+services: # Se deben definir los servicios que son los contenedores que se van a levantar
+  db_postgres:
+    container_name: postgres-db # Este es el nombre del host de la DB
+    image: postgres:15.1
+    ports:
+      - "5434:5432"
+    volumes:
+      # - postgres-db:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=123456 
+
+  pg_admin:
+    depends_on:
+      - db_postgres
+    container_name: pgAdmin 
+    image: dpage/pgadmin4:6.17
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pg_admin:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=123456 
+      - PGADMIN_DEFAULT_EMAIL=superman@google.com
+
+volumes: # Definir para tomar un volumen externo ya creado y no crear uno nuevo
+  postgres-db:
+    external: true
+  
