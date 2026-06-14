@@ -1,0 +1,19 @@
+{
+  "name": "cron-ticker-two",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "start": "node app.js"
+  },
+  "author": "Alan Altamirano Hernández",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "node-cron": "^4.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}
